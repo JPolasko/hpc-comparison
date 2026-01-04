@@ -109,15 +109,11 @@ def run_training(datapath = 'results/standart_network', runs = 1):
         val_accuracies_all_runs = []
         
         # Load dataset
-        #train_loader, test_loader, _, classes = load_data(dataset=dataset_name, batch_size_train=64, batch_size_test=512)
         if dataset_name == "MNIST":
             train_dataset = datasets.SharedMNIST( train=True, normalize=True)
             test_dataset = datasets.SharedMNIST(  train=False, normalize=True )
             train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True, num_workers=4, pin_memory=False)
             test_loader  = DataLoader(test_dataset,  batch_size=512, shuffle=False, num_workers=4, pin_memory=False)
-
-        else:
-            train_loader, test_loader, _, _ = load_data(dataset=dataset_name, batch_size_train=64, batch_size_test=512)
 
 
         for run in range(runs):
